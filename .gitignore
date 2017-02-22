@@ -1,0 +1,11 @@
+.metadata\
+.recommenders\
+
+*.class
+
+bin\
+
+*.html
+
+*.jar
+
