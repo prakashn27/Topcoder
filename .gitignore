@@ -1,11 +1,13 @@
-.metadata\
-.recommenders\
+.metadata/
+.recommenders/
 
 *.class
 
-bin\
+bin/
 
 *.html
 
 *.jar
-
+.settings/
+.project
+.classpath
