@@ -1,7 +1,14 @@
-## My Topcode Solutions
+## My Topcoder Solutions:
+
+#### Handle
+`prakashnat`
 
 
-### Tools Used
+#### Tools Used
+```
+Editor   : Pycharm
+Language : Python and Java
+Plugin   : Greed
+```
 
-I have installed [EclipseCoder](http://fornwall.net/eclipsecoder/#competing) for this folder. 
 
