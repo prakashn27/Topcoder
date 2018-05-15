@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 433 - 1000: MakingPotions</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 433</span>
+        <span id='contest-division'>2</span>
+        <span id='problem-score'>1000</span>
+        <span id='problem-name'>MakingPotions</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1">An old witch is making a love potion. She has a lot of recipes and each of them has the following form:<br /><br />
+<pre>
+	S=N<sub>1</sub>S<sub>1</sub>+…+N<sub>k</sub>S<sub>k</sub></pre><br />
+where N<sub>1</sub>, …, N<sub>k</sub> are single-digit integers between 1 and 9, inclusive, S<sub>1</sub>, …, S<sub>k</sub> are names of ingredients, k is an integer greater than or equal to 1, and S is name of the resulting potion (all names contain only uppercase letters). This means that if she mixes N<sub>1</sub> units of S<sub>1</sub>, ..., N<sub>k</sub> units of S<sub>k</sub> all together, she will obtain 1 unit of S. There may be multiple recipes for the same potion.  In that case, the potion can be obtained using any one of them.  The ingredients are also potions, and some of them can be bought at the market.<br /><br />
+You want to create 1 unit of the potion called LOVE. You are given <type>String[]</type> <b>recipes</b>, each element of which is a recipe formatted as described above. You are also given a <type>String[]</type> <b>marketGoods</b> and a <type>int[]</type> <b>cost</b>. Each element of <b>marketGoods</b> is the name of a potion you can purchase at the market.  The i-th element of <b>cost</b> is the cost of 1 unit of the i-th potion in <b>marketGoods</b>.  Return the cheapest cost of obtaining 1 unit of LOVE.  If this cost is greater than 1,000,000,000, return 1,000,000,001 instead.  If the potion cannot be obtained, return -1 instead.</intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>MakingPotions</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>getCost</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        tuple(string)
+                    , 
+                        tuple(integer)
+                    , 
+                        tuple(string)
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        integer
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        def getCost(self, marketGoods, cost, recipes)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>marketGoods</b> will contain between 1 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>marketGoods</b> will contain between 1 and 50 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>marketGoods</b> will contain only uppercase letters ('A'-'Z').</user-constraint></li>
+        
+            <li><user-constraint escaped="1">All elements of <b>marketGoods</b> will be distinct.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>cost</b> will contain the same number of elements as <b>marketGoods</b>.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>cost</b> will be between 1 and 100, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>recipes</b> will contain between 0 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>recipes</b> will contain between 4 and 50 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>recipes</b> will contain only uppercase letters ('A'-'Z'), non-zero digits ('1'-'9') and the characters '+' and '='.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>recipes</b> will be formatted as described in the problem statement.</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE&quot;, &quot;WATER&quot;, &quot;HONEY&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 100, 1, 30 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE=5WATER+3HONEY&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            95
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">The LOVE potion is sold at the market, but the witch can make it for a lower cost.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;WATER&quot;, &quot;HONEY&quot;, &quot;HOP&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 2, 6, 9 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE=2WATER+4HONEY+2BEER&quot;, &quot;BEER=1HOP+3WATER+1HOP&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            76
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">To obtain LOVE, one must make two units of BEER at a cost of 24 each, and then mix 2 units of WATER, 4 units of HONEY and 2 units of BEER, which will cost a total of 76.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;ORANGEJUICE&quot;, &quot;APPLEJUICE&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 6, 4 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;JUICEMIX=1ORANGEJUICE+1APPLEJUICE&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            -1
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">The witch doesn't have a LOVE recipe.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;WATER&quot;, &quot;HONEY&quot;, &quot;HOP&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 1, 22, 17 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE=7WATER+3HONEY&quot;, &quot;LOVE=2HONEY+2HOP&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            73
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">The witch has two LOVE recipes and prefers the first one.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;OIL&quot;, &quot;WATER&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 60, 70 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;FIRSTPOTION=1OIL+1SECONDPOTION&quot;, &quot;SECONDPOTION=4WATER+1FIRSTPOTION&quot;, &quot;LOVE=1FIRSTPOTION+1SECONDPOTION&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            -1
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;HONEYBIT&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 100 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE=6HONEYMEGABYTE&quot;, &quot;HONEYMEGABYTE=2HONEYFIFTYTWELVEKBYTES&quot;, &quot;HONEYFIFTYTWELVEKBYTES=8HONEYSIXTYFOURKBYTES&quot;, &quot;HONEYSIXTYFOURKBYTES=8HONEYEIGHTKBYTES&quot;, &quot;HONEYEIGHTKBYTES=8HONEYKBYTE&quot;, &quot;HONEYKBYTE=2EIGHTBYEIGHTWORDS&quot;, &quot;EIGHTBYEIGHTWORDS=8EIGHTWORDS&quot;, &quot;EIGHTWORDS=8HONEYWORD&quot;, &quot;HONEYWORD=8HONEYBYTE&quot;, &quot;HONEYBYTE=8HONEYBIT&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1000000001
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;WATER&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 1 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;LOVE=1LOVE&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            -1
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Some recipes can be useless.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">marketGoods</span>
+                                <span class="value data">
+                                
+                                    { &quot;MILK&quot;, &quot;WATER&quot;, &quot;HOP&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">cost</span>
+                                <span class="value data">
+                                
+                                    { 6, 1, 14 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">recipes</span>
+                                <span class="value data">
+                                
+                                    { &quot;NECTAR=4HOP+2MILK&quot;, &quot;LOVE=5MILK+3BEER&quot;, &quot;LOVE=2WATER+1LOVE&quot;, &quot;LOVE=2MIX+1NECTAR&quot;, &quot;MIX=1MILK+1WATER+1HOP&quot;, &quot;BEER=5WATER+2HOP&quot;, &quot;LOVE=1NECTAR+3WATER+3HOP&quot;, &quot;NECTAR=3BEER+1MILK+2MILK&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            110
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>
