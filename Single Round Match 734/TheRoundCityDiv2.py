@@ -9,24 +9,7 @@ class TheRoundCityDiv2:
             for y in range(-r, r+1):
                 if x**2 + y**2 <= r**2:
                     res += 1
-        return res-1
-        # s = set()
-        # res = [0]
-        # def count(x,y, res):
-        #     if (x,y) in s: return
-        #     print(x,y)
-        #
-        #     if x > r or y > r or y < -r or x < -r : return
-        #     if x**2 + y**2 <= r**2:
-        #         s.add((x,y))
-        #     else:
-        #         return
-        #     count(x+1,y,res)
-        #     count(x - 1, y,res)
-        #     count(x, y+1,res)
-        #     count(x, y -1,res)
-        # count(0,0,res)
-        # return len(s)-1
+        return res-1 # exclue (0,0)
 
 # CUT begin
 # TEST CODE FOR PYTHON {{{
