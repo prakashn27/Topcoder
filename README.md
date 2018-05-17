@@ -3,7 +3,7 @@
 #### Handle
 `prakashnat`
 
-SRM review: https://www.topcoder.com/members/prakashnat/details/?track=DATA_SCIENCE&subTrack=SRM&tab=Past%20srm
+[SRM submissions](https://www.topcoder.com/members/prakashnat/details/?track=DATA_SCIENCE&subTrack=SRM&tab=Past%20srm)
 
 #### Tools Used
 ```
