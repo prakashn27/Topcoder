@@ -12,8 +12,8 @@ Plugin   : Greed
 ```
 
 #### Reference links:
-[my SRM submissions](https://www.topcoder.com/members/prakashnat/details/?track=DATA_SCIENCE&subTrack=SRM&tab=Past%20srm)
-[how to run system test for practice](https://www.productivecsharp.com/2016/05/verify-top-coder-solution-system-tests/)
+[My SRM submissions](https://www.topcoder.com/members/prakashnat/details/?track=DATA_SCIENCE&subTrack=SRM&tab=Past%20srm)     
+[How to run system test for practice](https://www.productivecsharp.com/2016/05/verify-top-coder-solution-system-tests/)
 
 #### Libs for reference
 https://www.quora.com/What-are-some-Python-modules-I-should-know-for-competitive-programming
