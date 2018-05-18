@@ -1,8 +1,8 @@
 ## My Topcoder Solutions:
 
 #### Handle
-`prakashnat`
-
+`prakashnat`     
+`_monk_`
 
 #### Tools Used
 ```
@@ -10,6 +10,10 @@ Editor   : Pycharm
 Language : Python and Java
 Plugin   : Greed
 ```
+
+#### Reference links:
+[My SRM submissions](https://www.topcoder.com/members/prakashnat/details/?track=DATA_SCIENCE&subTrack=SRM&tab=Past%20srm)     
+[How to run system test for practice](https://www.productivecsharp.com/2016/05/verify-top-coder-solution-system-tests/)
 
 #### Libs for reference
 https://www.quora.com/What-are-some-Python-modules-I-should-know-for-competitive-programming
